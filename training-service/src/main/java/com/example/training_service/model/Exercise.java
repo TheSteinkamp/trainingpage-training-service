@@ -1,4 +1,4 @@
-package com.example.training_service.entity;
+package com.example.training_service.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package com.example.training_service.entity;
+package com.example.training_service.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -19,9 +18,10 @@ public class Training {
     @Id
     @GeneratedValue
     private long id;
+    private String type;
     private String description;
     private LocalDate date;
-    private LocalTime length;
+    private int duration;
     private Long userId;
     @ManyToMany
     private List<Exercise> exercises;

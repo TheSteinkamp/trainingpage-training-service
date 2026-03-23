@@ -1,6 +1,6 @@
 package com.example.training_service.controller;
 
-import com.example.training_service.entity.Exercise;
+import com.example.training_service.model.Exercise;
 import com.example.training_service.service.ExerciseService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

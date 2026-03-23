@@ -1,6 +1,6 @@
 package com.example.training_service.controller;
 
-import com.example.training_service.entity.Training;
+import com.example.training_service.model.Training;
 import com.example.training_service.service.TrainingService;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,9 +26,9 @@ public TrainingController(TrainingService trainingService) {
     return trainingService.addTraining(training);
 }
 
-@GetMapping("/{id}")
-    public Training getTrainingById(@PathVariable Long id) {
-    return trainingService.findById(id);
+@GetMapping("/user/{id}")
+    public List<Training> getTrainingsByUserId(@PathVariable Long id) {
+    return trainingService.findByUser(id);
 }
 
 }
