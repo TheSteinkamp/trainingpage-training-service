@@ -17,12 +17,12 @@ import java.util.List;
 public class Training {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String type;
     private String description;
     private LocalDate date;
     private int duration;
     private Long userId;
-    @ManyToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Exercise> exercises;
 }
