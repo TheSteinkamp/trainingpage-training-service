@@ -2,10 +2,9 @@ package com.example.training_service.controller;
 
 import com.example.training_service.model.Exercise;
 import com.example.training_service.service.ExerciseService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/exercise")
@@ -21,5 +20,30 @@ public class ExerciseController {
     public Exercise addExercise(@RequestBody Exercise exercise) {
     return exerciseService.addExercise(exercise);
     }
+
+    @GetMapping("/all")
+    public List<Exercise> getAllExercises() {
+        return exerciseService.getAll();
+    }
+
+    @GetMapping("/bodypartlist")
+    public List<String> findBodyPartList() {
+        return exerciseService.findBodyPartList();
+    }
+    @GetMapping("/difficultylist")
+    public List<String> findDifficultyList() {
+        return exerciseService.findDifficultyList();
+    }
+
+    @GetMapping("/bodypart/{bodypart}")
+    public List<Exercise> getExercisesByBodyPart(@PathVariable String bodypart) {
+        return exerciseService.getExercisesByBodyPart(bodypart);
+    }
+
+    @GetMapping("/bodypart/{bodypart}/difficulty/{difficulty}")
+    public List<Exercise> getExercisesByBodyPartAndDifficulty(@PathVariable String bodypart, @PathVariable String difficulty) {
+        return exerciseService.getExercisesByBodyPartAndDifficulty(bodypart, difficulty);
+    }
+
 }
 
