@@ -1,13 +1,18 @@
 package com.example.training_service.service;
 
+import com.example.training_service.DTO.ExerciseDTO;
+import com.example.training_service.DTO.SessionExerciseRequest;
 import com.example.training_service.enums.BodyParts;
 import com.example.training_service.enums.Difficulty;
 import com.example.training_service.model.Exercise;
+import com.example.training_service.model.SessionExercise;
 import com.example.training_service.repository.ExerciseRepository;
+import com.example.training_service.repository.SessionExerciseRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,21 +20,29 @@ import java.util.List;
 public class ExerciseService {
     @Autowired
     private ExerciseRepository exerciseRepository;
+    @Autowired
+    private SessionExerciseRepository sessionExerciseRepository;
 
-    public Exercise addExercise(Exercise exercise) {
-        return exerciseRepository.save(exercise);
+    ModelMapper modelMapper = new ModelMapper();
+
+    public SessionExercise addExercise(SessionExerciseRequest exercise) {
+        SessionExercise newExercise = modelMapper.map(exercise, SessionExercise.class);
+        return sessionExerciseRepository.save(newExercise);
     }
 
-    public List<Exercise> getExercisesByBodyPart(@PathVariable String bodypart) {
-        return exerciseRepository.getExercisesByBodyPart(bodypart.toLowerCase());
+    public List<ExerciseDTO> getExercisesByBodyPart(String bodypart) {
+        List <Exercise> exerciseList = exerciseRepository.getExercisesByBodyPart(bodypart.toLowerCase());
+        return exerciseToDTO(exerciseList);
     }
 
-    public List<Exercise> getExercisesByBodyPartAndDifficulty(String bodyPart, String difficulty) {
-        return exerciseRepository.getExercisesByBodyPartAndDifficulty(bodyPart.toLowerCase(), difficulty.toLowerCase());
+    public List<ExerciseDTO> getExercisesByBodyPartAndDifficulty(String bodyPart, String difficulty) {
+        List <Exercise> exerciseList = exerciseRepository.getExercisesByBodyPartAndDifficulty(bodyPart.toLowerCase(), difficulty.toLowerCase());
+        return exerciseToDTO(exerciseList);
     }
 
-    public List<Exercise> getAll() {
-        return exerciseRepository.findAll();
+    public List<ExerciseDTO> getAll() {
+        List<Exercise> exerciseList = exerciseRepository.findAll();
+        return exerciseToDTO(exerciseList);
     }
 
     public List<String> findBodyPartList() {
@@ -38,6 +51,15 @@ public class ExerciseService {
 
     public List<String> findDifficultyList() {
         return Arrays.stream(Difficulty.values()).map(bp -> bp.label).toList();
+    }
+
+    public List<ExerciseDTO> exerciseToDTO(List<Exercise> exerciseList) {
+        List<ExerciseDTO> exerciseDTOList = new ArrayList<>();
+        for (Exercise exercise : exerciseList) {
+            ExerciseDTO exerciseDTO = modelMapper.map(exercise, ExerciseDTO.class);
+            exerciseDTOList.add(exerciseDTO);
+        }
+        return exerciseDTOList;
     }
 
 

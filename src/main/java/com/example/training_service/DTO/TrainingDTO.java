@@ -1,22 +1,13 @@
-package com.example.training_service.model;
+package com.example.training_service.DTO;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.example.training_service.model.SessionExercise;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.OneToMany;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class Training {
-    @Id
-    @GeneratedValue
+public class TrainingDTO {
     private Long id;
     private String type;
     private String description;
