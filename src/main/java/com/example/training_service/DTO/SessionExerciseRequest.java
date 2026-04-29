@@ -1,8 +1,8 @@
 package com.example.training_service.DTO;
 
-public record SessionExerciseRequest(Long id,
-                                     int sets,
+public record SessionExerciseRequest(int sets,
                                      int repetitions,
-                                     String comments,
-                                     String exerciseId) {
+                                     String description,
+                                     String exerciseId,
+                                     String name) {
 }

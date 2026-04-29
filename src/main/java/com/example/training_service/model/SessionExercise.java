@@ -1,6 +1,8 @@
 package com.example.training_service.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,9 +16,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class SessionExercise {
     @Id
+    @GeneratedValue
     private Long id;
     private int sets;
     private int repetitions;
-    private String comments;
+    @Column(length = 1000)
+    private String description;
     private String exerciseId;
+    private String name;
 }

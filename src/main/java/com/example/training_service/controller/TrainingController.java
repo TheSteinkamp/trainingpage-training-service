@@ -2,7 +2,6 @@ package com.example.training_service.controller;
 
 import com.example.training_service.DTO.TrainingDTO;
 import com.example.training_service.DTO.TrainingRequest;
-import com.example.training_service.model.Training;
 import com.example.training_service.service.TrainingService;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,8 +23,10 @@ public TrainingController(TrainingService trainingService) {
 }
 
 @PostMapping("/new")
-    public TrainingDTO createTraining(@RequestBody TrainingRequest training) {
-    return trainingService.addTraining(training);
+    public void createTraining(@RequestBody TrainingRequest training) {
+    System.out.println("in training controller");
+    System.out.println(training.description());
+    trainingService.addTraining(training);
 }
 
 @GetMapping("/user/{id}")

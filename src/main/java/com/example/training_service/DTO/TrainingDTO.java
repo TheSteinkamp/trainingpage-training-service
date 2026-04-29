@@ -1,12 +1,17 @@
 package com.example.training_service.DTO;
 
-import com.example.training_service.model.SessionExercise;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class TrainingDTO {
     private Long id;
     private String type;
@@ -14,6 +19,5 @@ public class TrainingDTO {
     private LocalDate date;
     private int duration;
     private Long userId;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<SessionExercise> exercises;
+    private List<SessionExerciseDTO> exercises;
 }

@@ -1,6 +1,8 @@
 package com.example.training_service.service;
+import com.example.training_service.DTO.SessionExerciseRequest;
 import com.example.training_service.DTO.TrainingDTO;
 import com.example.training_service.DTO.TrainingRequest;
+import com.example.training_service.model.SessionExercise;
 import com.example.training_service.model.Training;
 import com.example.training_service.repository.TrainingRepository;
 import org.modelmapper.ModelMapper;
@@ -27,10 +29,33 @@ public class TrainingService {
         return trainingToDTO(trainingList);
     }
 
-    public TrainingDTO addTraining(TrainingRequest training) {
-        Training newTraining = modelMapper.map(training, Training.class);
+    public void addTraining(TrainingRequest training) {
+        Training newTraining = trainingRequestToTraining(training);
         trainingRepository.save(newTraining);
-        return modelMapper.map(newTraining, TrainingDTO.class);
+    }
+
+    public Training trainingRequestToTraining(TrainingRequest request) {
+        Training training = new Training();
+        training.setType(request.type());
+        training.setDescription(request.description());
+        training.setDate(request.date());
+        training.setDuration(request.duration());
+        training.setUserId(request.userId());
+        List<SessionExercise> sessionList = new ArrayList<>();
+
+        for (SessionExerciseRequest session: request.sessionExercises()){
+            SessionExercise sessionExercise = new SessionExercise();
+            sessionExercise.setDescription(session.description());
+            sessionExercise.setName(session.name());
+            sessionExercise.setSets(session.sets());
+            sessionExercise.setRepetitions(session.repetitions());
+            sessionExercise.setExerciseId(session.exerciseId());
+            sessionList.add(sessionExercise);
+        }
+        training.setExercises(sessionList);
+        //Training savedTraining = trainingRepository.save(training);
+        return training;
+                //modelMapper.map(savedTraining, TrainingDTO.class);
     }
 
     public List<TrainingDTO> trainingToDTO(List<Training> trainingList) {

@@ -23,6 +23,7 @@ public class Training {
     private LocalDate date;
     private int duration;
     private Long userId;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "training_id")
     private List<SessionExercise> exercises;
 }
