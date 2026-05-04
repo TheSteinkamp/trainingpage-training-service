@@ -3,17 +3,15 @@ server:
 
 spring:
   application:
-    name: training-service
+    name: TRAINING-SERVICE
   datasource:
-    url: jdbc:postgresql://localhost:5432/training_db
-    username: myuser
-    password: mypassword
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/training_db}
+    username: ${SPRING_DATASOURCE_USERNAME:myuser}
+    password: ${SPRING_DATASOURCE_PASSWORD:mypassword}
     driver-class-name: org.postgresql.Driver
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
-    show-sql: true
 
 eureka:
   instance:

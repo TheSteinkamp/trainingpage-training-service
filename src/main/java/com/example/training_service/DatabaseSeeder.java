@@ -22,9 +22,9 @@ public class DatabaseSeeder implements CommandLineRunner {
     @Autowired
     private ExerciseRepository repository;
 
-    @Value("${EXERCISEDB_API_KEY}")
+    @Value("${EXERCISEDB_API_KEY:}")
     private String apiKey;
-    @Value("${EXERCISEDB_API_URL}")
+    @Value("${EXERCISEDB_API_URL:}")
     private String apiUrl;
 
     @Override

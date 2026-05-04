@@ -1,20 +1,20 @@
 package com.example.training_service.enums;
 
 public enum BodyParts {
-    BACK("back"),
-    CARDIO("cardio"),
-    CHEST("chest"),
-    LOWERARMS("lower arms"),
-    LOWERLEGS("lower legs"),
-    NECK("neck"),
-    SHOULDERS("shoulders"),
-    UPPERARMS("upper arms"),
-    UPPERLEGS("upper legs"),
-    WAIST("waist");
+    BACK("Back"),
+    CARDIO("Cardio"),
+    CHEST("Chest"),
+    LOWERARMS("Lower arms"),
+    LOWERLEGS("Lower legs"),
+    NECK("Neck"),
+    SHOULDERS("Shoulders"),
+    UPPERARMS("Upper arms"),
+    UPPERLEGS("Upper legs"),
+    WAIST("Waist");
 
     public final String label;
 
-    private BodyParts(String label) {
+    BodyParts(String label) {
         this.label = label;
     }
 }

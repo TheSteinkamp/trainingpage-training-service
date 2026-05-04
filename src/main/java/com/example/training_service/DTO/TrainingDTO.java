@@ -1,6 +1,5 @@
-package com.example.training_service.model;
+package com.example.training_service.DTO;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,21 +8,16 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Training {
-    @Id
-    @GeneratedValue
+public class TrainingDTO {
     private Long id;
     private String type;
     private String description;
     private LocalDate date;
     private int duration;
     private Long userId;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "training_id")
-    private List<SessionExercise> exercises;
+    private List<SessionExerciseDTO> exercises;
 }

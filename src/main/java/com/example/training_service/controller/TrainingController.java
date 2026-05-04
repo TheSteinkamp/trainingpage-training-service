@@ -1,6 +1,7 @@
 package com.example.training_service.controller;
 
-import com.example.training_service.model.Training;
+import com.example.training_service.DTO.TrainingDTO;
+import com.example.training_service.DTO.TrainingRequest;
 import com.example.training_service.service.TrainingService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,17 +18,17 @@ public TrainingController(TrainingService trainingService) {
 }
 
 @GetMapping("/all")
-    public List<Training> getAllTrainings() {
+    public List<TrainingDTO> getAllTrainings() {
     return trainingService.findAll();
 }
 
 @PostMapping("/new")
-    public Training createTraining(@RequestBody Training training) {
-    return trainingService.addTraining(training);
+    public void createTraining(@RequestBody TrainingRequest training) {
+    trainingService.addTraining(training);
 }
 
 @GetMapping("/user/{id}")
-    public List<Training> getTrainingsByUserId(@PathVariable Long id) {
+    public List<TrainingDTO> getTrainingsByUserId(@PathVariable Long id) {
     return trainingService.findByUser(id);
 }
 
