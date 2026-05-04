@@ -18,5 +18,7 @@ public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
             "AND e.difficulty = :difficulty")
     List<Exercise> getExercisesByBodyPartAndDifficulty(@Param("bodyPart") String bodyPart, @Param("difficulty") String difficulty);
 
-
+    @Query("SELECT e FROM Exercise e " +
+            "WHERE e.id IN :ids")
+    List<Exercise> findAllByIdIn(@Param("ids") List<String> ids);
 }

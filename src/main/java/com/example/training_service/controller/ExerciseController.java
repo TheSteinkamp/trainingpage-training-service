@@ -7,6 +7,7 @@ import com.example.training_service.service.ExerciseService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/exercise")
@@ -45,6 +46,13 @@ public class ExerciseController {
     @GetMapping("/bodypart/{bodypart}/difficulty/{difficulty}")
     public List<ExerciseDTO> getExercisesByBodyPartAndDifficulty(@PathVariable String bodypart, @PathVariable String difficulty) {
         return exerciseService.getExercisesByBodyPartAndDifficulty(bodypart, difficulty);
+    }
+
+    @PostMapping("/session")
+    public List<ExerciseDTO> getExercisesPerSession(@RequestBody Map<String, List<String>> request) {
+        System.out.println("in getExercisesPerSession controller");
+        List<String> ids = request.get("ids");
+        return exerciseService.getExercisesPerSession(ids);
     }
 
 }

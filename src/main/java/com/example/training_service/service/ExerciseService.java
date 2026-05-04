@@ -53,6 +53,13 @@ public class ExerciseService {
         return Arrays.stream(Difficulty.values()).map(bp -> bp.label).toList();
     }
 
+    public List<ExerciseDTO> getExercisesPerSession(List<String> id) {
+        System.out.println("in getExercisesPerSession service");
+        List<Exercise> exerciseList = exerciseRepository.findAllByIdIn(id);
+        System.out.println(exerciseList.size());
+        return exerciseToDTO(exerciseList);
+    }
+
     public List<ExerciseDTO> exerciseToDTO(List<Exercise> exerciseList) {
         List<ExerciseDTO> exerciseDTOList = new ArrayList<>();
         for (Exercise exercise : exerciseList) {
@@ -61,6 +68,5 @@ public class ExerciseService {
         }
         return exerciseDTOList;
     }
-
 
 }

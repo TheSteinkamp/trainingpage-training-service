@@ -53,9 +53,7 @@ public class TrainingService {
             sessionList.add(sessionExercise);
         }
         training.setExercises(sessionList);
-        //Training savedTraining = trainingRepository.save(training);
         return training;
-                //modelMapper.map(savedTraining, TrainingDTO.class);
     }
 
     public List<TrainingDTO> trainingToDTO(List<Training> trainingList) {

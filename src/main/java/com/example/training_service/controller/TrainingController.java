@@ -24,8 +24,6 @@ public TrainingController(TrainingService trainingService) {
 
 @PostMapping("/new")
     public void createTraining(@RequestBody TrainingRequest training) {
-    System.out.println("in training controller");
-    System.out.println(training.description());
     trainingService.addTraining(training);
 }
 
