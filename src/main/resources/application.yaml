@@ -3,11 +3,11 @@ server:
 
 spring:
   application:
-    name: training-service
+    name: TRAINING-SERVICE
   datasource:
-    url: jdbc:postgresql://localhost:5432/training_db
-    username: myuser
-    password: mypassword
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -17,9 +17,11 @@ spring:
 
 eureka:
   instance:
+    hostname: training-service
     prefer-ip-address: true
+    instance-id: training-service:8083
   client:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://eureka-server:8761/eureka/
