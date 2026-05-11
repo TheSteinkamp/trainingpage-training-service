@@ -54,7 +54,6 @@ public class ExerciseService {
     }
 
     public List<ExerciseDTO> getExercisesPerSession(List<String> id) {
-        System.out.println("in getExercisesPerSession service");
         List<Exercise> exerciseList = exerciseRepository.findAllByIdIn(id);
         System.out.println(exerciseList.size());
         return exerciseToDTO(exerciseList);

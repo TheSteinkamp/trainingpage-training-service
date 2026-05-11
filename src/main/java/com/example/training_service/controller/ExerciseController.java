@@ -33,6 +33,7 @@ public class ExerciseController {
     public List<String> findBodyPartList() {
         return exerciseService.findBodyPartList();
     }
+
     @GetMapping("/difficultylist")
     public List<String> findDifficultyList() {
         return exerciseService.findDifficultyList();
@@ -54,6 +55,5 @@ public class ExerciseController {
         List<String> ids = request.get("ids");
         return exerciseService.getExercisesPerSession(ids);
     }
-
 }
 

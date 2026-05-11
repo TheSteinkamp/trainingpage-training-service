@@ -30,7 +30,7 @@ public class DatabaseSeeder implements CommandLineRunner {
     @Override
     public void run(String... args){
         if (repository.count() == 0) {
-            System.out.println("Databasen är tom, importerar övningar.");
+            System.out.println("Database empty, importing exercises.");
             importExercises();
         }
     }
@@ -71,6 +71,6 @@ public class DatabaseSeeder implements CommandLineRunner {
         catch (IOException e){
             throw new RuntimeException(e);
         }
-        System.out.println("Import klar, importerade " + repository.count() + " övningar");
+        System.out.println("Import finished, imported " + repository.count() + " exercises");
     }
 }
