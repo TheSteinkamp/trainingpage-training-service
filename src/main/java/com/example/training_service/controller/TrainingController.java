@@ -17,11 +17,6 @@ public TrainingController(TrainingService trainingService) {
     this.trainingService = trainingService;
 }
 
-@GetMapping("/all")
-    public List<TrainingDTO> getAllTrainings() {
-    return trainingService.findAll();
-}
-
 @PostMapping("/new")
     public void createTraining(@RequestBody TrainingRequest training) {
     trainingService.addTraining(training);

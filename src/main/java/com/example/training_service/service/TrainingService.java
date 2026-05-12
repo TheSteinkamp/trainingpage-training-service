@@ -19,11 +19,6 @@ public class TrainingService {
 
     ModelMapper modelMapper = new ModelMapper();
 
-    public List<TrainingDTO> findAll() {
-        List<Training> trainingList = trainingRepository.findAll();
-        return trainingToDTO(trainingList);
-    }
-
     public List<TrainingDTO> findByUser(Long id) {
         List<Training> trainingList= trainingRepository.findByUserId(id);
         return trainingToDTO(trainingList);
